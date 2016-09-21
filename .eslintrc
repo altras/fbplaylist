@@ -1,0 +1,25 @@
+{
+  "extends": "standard",
+  "rules": {
+    "comma-dangle": [0]
+  },
+  "globals": {
+    "$": true,
+    "jQuery": true,
+    "describe": true,
+    "before": true,
+    "beforeEach": true,
+    "after": true,
+    "afterEach": true,
+    "it": true,
+    "before": true,
+    "test": true,
+    "expect": true,
+    "xit": true,
+    "xdescribe": true,
+    "riot": true,
+    "fetch": true,
+    "confirm": true,
+    "alert": true
+  }
+}
