@@ -1,9 +1,9 @@
 {
-  "name": "Econt Dialog Engine",
+  "name": "Playlist app",
   "remote": "ssh N/A@N/A",
   "nodeVersion": "4.2.3",
   "sourceNode": ". ~/.nvm/nvm.sh && nvm use v{nodeVersion}",
-  "cwd": "~/Econt Dialog Engine",
+  "cwd": "~/playlist-app",
   "main": "index.js",
   "source": "git@github.com:camplight/econt-dialog-engine.git",
   "branch": "staging",

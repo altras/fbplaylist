@@ -1,8 +1,8 @@
 {
-  "name": "organic-stem-skeleton",
+  "name": "playlist-app",
   "private": true,
   "version": "0.1.0",
-  "description": "Econt dialog engine system",
+  "description": "Playlist app",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -11,7 +11,7 @@
     "build": "angel build",
     "test:style": "eslint ./"
   },
-  "author": "Camplight Ltd.",
+  "author": "friends",
   "dependencies": {
     "angelabilities-package-scripts": "0.1.0",
     "babel-core": "^6.14.0",
