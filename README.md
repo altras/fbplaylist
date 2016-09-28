@@ -1,4 +1,4 @@
-# Econt Dialog Engine
+# Playlist app
 
 ## setup
 
