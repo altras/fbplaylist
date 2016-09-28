@@ -2,8 +2,8 @@
 
 ## setup
 
-    $ git clone git@github.com:camplight/econt-dialog-engine.git
-    $ cd ./Econt Dialog Engine
+    $ git clone git@bitbucket.org:altras/playlist-app.git
+    $ cd ./playlist-app
     $ npm install
     $ npm install organic-angel -g
 
