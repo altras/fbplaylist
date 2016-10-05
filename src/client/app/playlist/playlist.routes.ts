@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
 import { PlaylistComponent } from './index';
 
-export const AboutRoutes: Route[] = [
+export const PlaylistRoutes: Route[] = [
   {
-    path: 'playlist-page',
+    path: 'playlist',
     component: PlaylistComponent
   }
 ];

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /**
- * This class represents the lazy loaded AboutComponent.
+ * This class represents the lazy loaded PlaylistComponent.
  */
 @Component({
   moduleId: module.id,
@@ -9,4 +9,4 @@ import { Component } from '@angular/core';
   templateUrl: 'playlist.component.html',
   styleUrls: ['playlist.component.css']
 })
-export class AboutComponent { }
+export class PlaylistComponent { }

@@ -1,0 +1,10 @@
+"use strict";
+var index_1 = require('./index');
+exports.PlaylistRoutes = [
+    {
+        path: 'playlist',
+        component: index_1.PlaylistComponent
+    }
+];
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9wbGF5bGlzdC9wbGF5bGlzdC5yb3V0ZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLHNCQUFrQyxTQUFTLENBQUMsQ0FBQTtBQUUvQixzQkFBYyxHQUFZO0lBQ3JDO1FBQ0UsSUFBSSxFQUFFLFVBQVU7UUFDaEIsU0FBUyxFQUFFLHlCQUFpQjtLQUM3QjtDQUNGLENBQUMiLCJmaWxlIjoiYXBwL3BsYXlsaXN0L3BsYXlsaXN0LnJvdXRlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlIH0gZnJvbSAnQGFuZ3VsYXIvcm91dGVyJztcbmltcG9ydCB7IFBsYXlsaXN0Q29tcG9uZW50IH0gZnJvbSAnLi9pbmRleCc7XG5cbmV4cG9ydCBjb25zdCBQbGF5bGlzdFJvdXRlczogUm91dGVbXSA9IFtcbiAge1xuICAgIHBhdGg6ICdwbGF5bGlzdCcsXG4gICAgY29tcG9uZW50OiBQbGF5bGlzdENvbXBvbmVudFxuICB9XG5dO1xuIl19
