@@ -3,7 +3,6 @@ import { PlaylistComponent } from './index';
 
 export const PlaylistRoutes: Route[] = [
   {
-    path: 'playlist',
-    component: PlaylistComponent
+    path: 'playlist',  component: PlaylistComponent
   }
 ];
