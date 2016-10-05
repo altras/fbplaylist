@@ -1,0 +1,10 @@
+"use strict";
+var index_1 = require('./index');
+exports.AboutRoutes = [
+    {
+        path: 'about',
+        component: index_1.AboutComponent
+    }
+];
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9wbGF5bGlzdC1wYWdlL2Fib3V0LnJvdXRlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0Esc0JBQStCLFNBQVMsQ0FBQyxDQUFBO0FBRTVCLG1CQUFXLEdBQVk7SUFDbEM7UUFDRSxJQUFJLEVBQUUsT0FBTztRQUNiLFNBQVMsRUFBRSxzQkFBYztLQUMxQjtDQUNGLENBQUMiLCJmaWxlIjoiYXBwL3BsYXlsaXN0LXBhZ2UvYWJvdXQucm91dGVzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUm91dGUgfSBmcm9tICdAYW5ndWxhci9yb3V0ZXInO1xuaW1wb3J0IHsgQWJvdXRDb21wb25lbnQgfSBmcm9tICcuL2luZGV4JztcblxuZXhwb3J0IGNvbnN0IEFib3V0Um91dGVzOiBSb3V0ZVtdID0gW1xuICB7XG4gICAgcGF0aDogJ2Fib3V0JyxcbiAgICBjb21wb25lbnQ6IEFib3V0Q29tcG9uZW50XG4gIH1cbl07XG4iXX0=
