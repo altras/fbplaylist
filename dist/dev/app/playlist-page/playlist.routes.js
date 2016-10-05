@@ -1,0 +1,10 @@
+"use strict";
+var index_1 = require('./index');
+exports.AboutRoutes = [
+    {
+        path: 'playlist-page',
+        component: index_1.PlaylistComponent
+    }
+];
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9wbGF5bGlzdC1wYWdlL3BsYXlsaXN0LnJvdXRlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0Esc0JBQWtDLFNBQVMsQ0FBQyxDQUFBO0FBRS9CLG1CQUFXLEdBQVk7SUFDbEM7UUFDRSxJQUFJLEVBQUUsZUFBZTtRQUNyQixTQUFTLEVBQUUseUJBQWlCO0tBQzdCO0NBQ0YsQ0FBQyIsImZpbGUiOiJhcHAvcGxheWxpc3QtcGFnZS9wbGF5bGlzdC5yb3V0ZXMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBSb3V0ZSB9IGZyb20gJ0Bhbmd1bGFyL3JvdXRlcic7XG5pbXBvcnQgeyBQbGF5bGlzdENvbXBvbmVudCB9IGZyb20gJy4vaW5kZXgnO1xuXG5leHBvcnQgY29uc3QgQWJvdXRSb3V0ZXM6IFJvdXRlW10gPSBbXG4gIHtcbiAgICBwYXRoOiAncGxheWxpc3QtcGFnZScsXG4gICAgY29tcG9uZW50OiBQbGF5bGlzdENvbXBvbmVudFxuICB9XG5dO1xuIl19
