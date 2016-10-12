@@ -29,18 +29,16 @@ export class PlaylistComponent implements OnInit {
     FB.login(function(response: any) {
       if (response.authResponse) {
        console.log('Welcome!  Fetching your information.... ');
-       FB.api('/me', function(res: any) {
-         console.log('Good to see you, ' + res.name + '.');
-       });
+       FB.api('/1741337529467978/feed', 'GET', {"fields":"link"},
+         function(res: any) {
+           console.log(res)
+         }
+       );
       } else {
        console.log('User cancelled login or did not fully authorize.');
       }
     });
-    // FB.api('/1741337529467978/feed', 'GET', {"fields":"link"},
-    //   function(res: any) {
-    //     console.log(res)
-    //   }
-    // );
+
   }
 
 }
