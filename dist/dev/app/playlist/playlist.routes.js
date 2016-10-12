@@ -1,9 +1,0 @@
-"use strict";
-var index_1 = require('./index');
-exports.PlaylistRoutes = [
-    {
-        path: 'playlist', component: index_1.PlaylistComponent
-    }
-];
-
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9wbGF5bGlzdC9wbGF5bGlzdC5yb3V0ZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLHNCQUFrQyxTQUFTLENBQUMsQ0FBQTtBQUUvQixzQkFBYyxHQUFZO0lBQ3JDO1FBQ0UsSUFBSSxFQUFFLFVBQVUsRUFBRyxTQUFTLEVBQUUseUJBQWlCO0tBQ2hEO0NBQ0YsQ0FBQyIsImZpbGUiOiJhcHAvcGxheWxpc3QvcGxheWxpc3Qucm91dGVzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUm91dGUgfSBmcm9tICdAYW5ndWxhci9yb3V0ZXInO1xuaW1wb3J0IHsgUGxheWxpc3RDb21wb25lbnQgfSBmcm9tICcuL2luZGV4JztcblxuZXhwb3J0IGNvbnN0IFBsYXlsaXN0Um91dGVzOiBSb3V0ZVtdID0gW1xuICB7XG4gICAgcGF0aDogJ3BsYXlsaXN0JywgIGNvbXBvbmVudDogUGxheWxpc3RDb21wb25lbnRcbiAgfVxuXTtcbiJdfQ==
