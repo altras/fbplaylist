@@ -27,7 +27,7 @@ export class PlaylistComponent implements OnInit {
   ngOnInit() {
     let queryParams: any = this.route.queryParams;
     this.link = queryParams.getValue().link
-    onFbLogin()
+    this.onFbLogin()
   }
 
   onFbLogin() {
