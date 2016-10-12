@@ -3,6 +3,6 @@
 </p>
 
 <form (submit)="handleSubmit()">
-  <input name="newName" placeholder="Input public facebook group or event">
+  <input [(ngModel)]="link" name="link" placeholder="Input public facebook group or event">
   <button type="submit">Play</button>
 </form>
