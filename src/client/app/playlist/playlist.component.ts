@@ -27,10 +27,10 @@ export class PlaylistComponent implements OnInit {
   ngOnInit() {
     let queryParams: any = this.route.queryParams;
     this.link = queryParams.getValue().link
-
+    onFbLogin()
   }
 
-  onFacebookLoginClick() {
+  onFbLogin() {
     console.log('WAT', event)
     FB.login(function(response: any) {
       console.log('response', response)
