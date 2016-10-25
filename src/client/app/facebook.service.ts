@@ -39,7 +39,7 @@ export class FacebookService {
 }
 
 
-login(path: string) : Promise<any> {
+login() : Promise<any> {
   return new Promise<any>(function(resolve: any, reject: any) {
     FB.login(function(response: any) {
       if (response.authResponse) {

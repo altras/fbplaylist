@@ -31,7 +31,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   onLoginClick() : void {
-    this.facebookService.login('/1741337529467978/feed')
+    this.facebookService.login()
     .then(res => this.onLoginSuccess(res)).catch(res => this.onLoginError(res));
   }
 
