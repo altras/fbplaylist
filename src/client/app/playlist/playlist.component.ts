@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FacebookService } from '../facebook.service';
 
-
 declare var YT: any;
 
 /**
@@ -21,7 +20,10 @@ export class PlaylistComponent implements OnInit {
   isFacebookLoggedIn: boolean = true;
   player : any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private facebookService: FacebookService) {
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private facebookService: FacebookService,
+    private http: Http) {
     facebookService.init();
   }
 
@@ -37,14 +39,14 @@ export class PlaylistComponent implements OnInit {
 
   done : boolean = false;
   onPlayerStateChange(event : any) : void {
-        if (event.data == YT.PlayerState.PLAYING && !this.done) {
-          setTimeout(this.stopVideo, 6000);
-          this.done = true;
-        }
+    if (event.data == YT.PlayerState.PLAYING && !this.done) {
+      setTimeout(this.stopVideo, 6000);
+      this.done = true;
+    }
   }
 
   stopVideo() : void {
-        this.player.stopVideo();
+    this.player.stopVideo();
   }
 
   onLoginClick() : void {
@@ -62,30 +64,23 @@ export class PlaylistComponent implements OnInit {
   }
 
   onLinksSuccess(res: any) : void {
-    var ids: any = res.join(",");
-    console.log(ids)
+
+  }
+
+  createPlaylist (res: any) : void {
     var resultLinks : any;
-       this.player = new YT.Player('player', {
-             height: '390',
-             width: '640',
-             playerVars: {playlist: res[0] + res[1]},
-             enablejsapi: 1, 
-             events: {
-               'onReady': this.onPlayerReady,
-              //  'onStateChange': this.onPlayerStateChange,
-               'onError' : (event : any) => {console.log(event)}
-             }
-           });
-
+    this.player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      playerVars: { playlist: res[0] + res[1] },
+      enablejsapi: 1,
+      events: {
+        'onReady': this.onPlayerReady,
+        //  'onStateChange': this.onPlayerStateChange,
+        'onError': (event: any) => { console.log(event) }
+      }
+    });
   }
-
-getYoutubeId(theLink:string):string {
-  var regexp = new RegExp(/https:\/\/(?:www\.)?youtube.*watch\?v=([a-zA-Z0-9\-_]+)/)
-  if (regexp.test(theLink)) {
-    return theLink.match(regexp)[1]
-  }
-  return "WlBiLNN1NhQ";
-}
 
   onLinksError(res: any) : void {
     console.log(res)
