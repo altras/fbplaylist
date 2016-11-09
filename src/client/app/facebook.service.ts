@@ -48,7 +48,7 @@ export class FacebookService {
                 let link: string = message.link;
                 let ids: string[] = link.match(this.youtubeRegex);
                 return ids[1];
-              })
+              }).join(",")
             )
   }
 
@@ -56,22 +56,27 @@ export class FacebookService {
 
   getPostLinks(path: string) : Promise<any> {
     return new Promise<any>((resolve: any, reject: any) => {
-      FB.api(path, 'GET', {"fields":"link"},
-        (res: any) => {
-          if(res.error) {
-            reject(res)
+        this.getPostLinksRecursevly(path, resolve, reject);
+    })
+  }
+
+
+  getPostLinksRecursevly(path: string, resolve: any, reject: any) : void {
+    FB.api(path, 'GET', {"fields":"link"},
+      (res: any) => {
+        if(res.error) {
+          reject(res)
+        } else {
+          this.pushIds(res.data)
+          console.log(res)
+          if(res.paging && res.paging.next) {
+            this.getPostLinksRecursevly(res.paging.next, resolve, reject)
           } else {
-            this.pushIds(res.data)
-            console.log(res)
-            if(res.paging.next) {
-              this.getPostLinks(res.paging.next)
-            } else {
-              resolve(this.ids);
-            }
+            resolve(this.ids);
           }
         }
-      );
-    })
+      }
+    );
   }
 
 

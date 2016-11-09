@@ -62,35 +62,14 @@ export class PlaylistComponent implements OnInit {
   }
 
   onLinksSuccess(res: any) : void {
-    console.log(res)
+    var ids: any = res.join(",");
+    console.log(ids)
     var resultLinks : any;
-
-    let youtubeIds =
-      res.data.filter((msg: any) => {
-        // -- YouTube Regular expression that matches patterns such as:
-        // http://www.youtube.com/watch?v=iwGFalTRHDA
-        // http://www.youtube.com/watch?v=iwGFalTRHDA&feature=related
-        // http://youtu.be/iwGFalTRHDA
-        // http://youtu.be/n17B_uFF4cA
-        // http://www.youtube.com/watch?v=t-ZRX8984sc
-        // http://youtu.be/t-ZRX8984sc
-        if (!msg.link) {
-          return false;
-        }
-        let youtubeRegex: any = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?/;
-        let link: string = msg.link;
-        let youtubeUrl: any = link.match(youtubeRegex);
-        return youtubeUrl;
-      }).map((message: any) => {
-        let link: string = message.link;
-        let ids: string = link.split('=')[1];
-        return ids.split('&')[0];
-      }).join(',')
-
        this.player = new YT.Player('player', {
              height: '390',
              width: '640',
-             playerVars: {playlist: youtubeIds},
+             playerVars: {playlist: res[0] + res[1]},
+             enablejsapi: 1, 
              events: {
                'onReady': this.onPlayerReady,
               //  'onStateChange': this.onPlayerStateChange,
