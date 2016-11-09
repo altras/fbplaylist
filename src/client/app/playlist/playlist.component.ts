@@ -22,8 +22,7 @@ export class PlaylistComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private facebookService: FacebookService,
-    private http: Http) {
+    private facebookService: FacebookService) {
     facebookService.init();
   }
 
@@ -64,18 +63,16 @@ export class PlaylistComponent implements OnInit {
   }
 
   onLinksSuccess(res: any) : void {
-
-  }
-
-  createPlaylist (res: any) : void {
-    var resultLinks : any;
+    console.log(res)
     this.player = new YT.Player('player', {
       height: '390',
       width: '640',
-      playerVars: { playlist: res[0] + res[1] },
-      enablejsapi: 1,
+      playerVars: { 'autoplay': 1, playlist: res },
       events: {
         'onReady': this.onPlayerReady,
+        'onStateChange': (e) => {
+          console.log(e)
+        }
         //  'onStateChange': this.onPlayerStateChange,
         'onError': (event: any) => { console.log(event) }
       }

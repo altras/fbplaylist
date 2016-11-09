@@ -23,22 +23,19 @@ export class FacebookService {
     })
   }
 
-
+  // -- YouTube Regular expression that matches patterns such as:
+  // http://www.youtube.com/watch?v=iwGFalTRHDA
+  // http://www.youtube.com/watch?v=iwGFalTRHDA&feature=related
+  // http://youtu.be/iwGFalTRHDA
+  // http://youtu.be/n17B_uFF4cA
+  // http://www.youtube.com/watch?v=t-ZRX8984sc
+  // http://youtu.be/t-ZRX8984sc
   youtubeRegex: any = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?/;
 
-
-
   pushIds(data : any) : void {
-    this.ids.push(() => {
-      var validYoutubeIds = data.filter((msg: any) => {
-        // -- YouTube Regular expression that matches patterns such as:
-        // http://www.youtube.com/watch?v=iwGFalTRHDA
-        // http://www.youtube.com/watch?v=iwGFalTRHDA&feature=related
-        // http://youtu.be/iwGFalTRHDA
-        // http://youtu.be/n17B_uFF4cA
-        // http://www.youtube.com/watch?v=t-ZRX8984sc
-        // http://youtu.be/t-ZRX8984sc
-        if (!msg.link) {
+    return new Promise<any>((resolve: any, reject: any) => {
+      var youtubeIds: string = data.filter((msg: any) => {
+        if (!msg.link) { // Some results are just comments without links
           return false;
         }
         let link: string = msg.link;
@@ -50,19 +47,28 @@ export class FacebookService {
         return ids[1];
       }).join(",")
 
-      const youtubeDataAPIKey = 'AIzaSyC2yg9n6dHWB877LCxFga5bHEQAvpU4fd4'
-      const url = `https://www.googleapis.com/youtube/v3/videos?part=id&id=${validYoutubeIds}&key=${youtubeDataAPIKey}`
-
-      function reqListener (e:any) {
-        console.log(e);
-      }
-
-      var oReq: any = new XMLHttpRequest();
-      oReq.addEventListener("load", reqListener);
-      oReq.open("GET", url);
-      oReq.send();
-
+      this.checkYouTubeIds(youtubeIds, resolve, reject); // Check if youtube ids are still valid
     })
+  }
+
+  checkYouTubeIds (ids, resolve, reject) {
+    const youtubeDataAPIKey = 'AIzaSyC2yg9n6dHWB877LCxFga5bHEQAvpU4fd4'
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=id&id=${ids}&key=${youtubeDataAPIKey}`
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        // Populate here this.ids and RESOLVE
+        // console.log('res', JSON.parse(xhr.responseText));
+        var res = JSON.parse(xhr.responseText)
+        this.ids.push(res.items.map((item) => {
+          return item.id
+        }).join(','))
+        resolve()
+      }
+    }
+    xhr.open('GET', url, true);
+    xhr.send(null);
   }
 
   ids : string[] = [];
@@ -80,14 +86,21 @@ export class FacebookService {
         if(res.error) {
           reject(res)
         } else {
-          this.pushIds(res.data)
-          console.log(res)
-          if(res.paging && res.paging.next) {
-            this.getPostLinksRecursevly(res.paging.next, resolve, reject)
-          } else {
-            console.log('this.ids[i]', this.ids[3])
-            resolve(this.ids[0] + this.ids[1] + this.ids[2] + this.ids[3]);
-          }
+          this.pushIds(res.data).then(() => {
+            if(res.paging && res.paging.next) {
+              this.getPostLinksRecursevly(res.paging.next, resolve, reject)
+            } else {
+              console.log('this.ids[i]', this.ids.join(',').split(',').length)
+              resolve(this.ids[0]
+                + ',' + this.ids[1]
+                + ',' + this.ids[2]
+                + ',' + this.ids[3]
+                + ',' + this.ids[4]
+                + ',' + this.ids[5]
+                + ',' + this.ids[6]
+                + ',' + this.ids[7]);
+            }
+          })
         }
       }
     );
