@@ -72,7 +72,7 @@ export class PlaylistComponent implements OnInit {
         'onReady': this.onPlayerReady,
         'onStateChange': (e) => {
           console.log(e)
-        }
+        },
         //  'onStateChange': this.onPlayerStateChange,
         'onError': (event: any) => { console.log(event) }
       }
