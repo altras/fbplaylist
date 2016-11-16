@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FacebookService } from '../facebook.service';
+import { FacebookService } from '../services/facebook.service';
 
 declare var YT: any;
 
@@ -70,7 +70,7 @@ export class PlaylistComponent implements OnInit {
       playerVars: { 'autoplay': 1, playlist: res },
       events: {
         'onReady': this.onPlayerReady,
-        'onStateChange': (e) => {
+        'onStateChange': (e: any) => {
           console.log(e)
         },
         //  'onStateChange': this.onPlayerStateChange,
