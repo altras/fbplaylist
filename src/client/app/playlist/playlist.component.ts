@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FacebookService } from '../services/facebook.service';
 import { YouTubeVideoData } from './model/YouTubeVideoData';
+import { YoutubeService } from '../services/youtube.service';
 
 declare var YT: any;
 
@@ -13,89 +14,84 @@ declare var YT: any;
   selector: 'sd-playlist',
   templateUrl: 'playlist.component.html',
   styleUrls: ['playlist.component.css'],
-  providers: [FacebookService]
+  providers: [FacebookService, YoutubeService]
 })
 export class PlaylistComponent implements OnInit {
 
   link: string;
   isFacebookLoggedIn: boolean = true;
-  player : any;
+  player: any;
+  done: boolean = false;
+  ids: string[] = [];
 
   videos : YouTubeVideoData[] = [];
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private facebookService: FacebookService) {
+    private facebookService: FacebookService,
+    private youtubeService: YoutubeService) {
     facebookService.init();
   }
 
   ngOnInit() {
     let queryParams: any = this.route.queryParams;
     this.link = queryParams.getValue().link
-    this.facebookService.getLoginStatus().then(res => this.onLoginStatus(res))
-
-    this.videos[0] = new YouTubeVideoData("test title", "https://img.youtube.com/vi/8FU6Yytw4Yw/1.jpg")
+    this.facebookService.getLoginStatus().then((res: any) => {
+      if(res.status === 'connected') {
+        this.getPostLinks('/1741337529467978/feed') // use this.link query Params here
+      } else {
+        this.isFacebookLoggedIn = false;
+      }
+    })
   }
 
-  onPlayerReady(event:any) : void {
+  getPostLinks(url: string): void {
+    this.facebookService.getPostLinks(url)
+      .then(res => this.youtubeService.checkIds(res))
+      .then(ids => this.onLinksSuccess(ids))
+      .catch(res => console.log(res));
+  }
+
+  onPlayerReady(event:any): void {
     event.target.playVideo();
   }
 
-  done : boolean = false;
-  onPlayerStateChange(event : any) : void {
+  onPlayerStateChange(event: any): void {
     if (event.data == YT.PlayerState.PLAYING && !this.done) {
       setTimeout(this.stopVideo, 6000);
       this.done = true;
     }
   }
 
-  stopVideo() : void {
+  stopVideo(): void {
     this.player.stopVideo();
   }
 
-  onLoginClick() : void {
+  onLoginClick(): void {
     this.facebookService.login()
-    .then(res => this.onLoginSuccess(res)).catch(res => this.onLoginError(res));
+      .then(res => this.onLoginSuccess(res))
+      .catch(res => console.log(res));
   }
 
-  onLoginStatus(res: any) : void {
-    if(res.status === 'connected') {
-      this.facebookService.getPostLinks('/1741337529467978/feed')
-      .then(res => this.onLinksSuccess(res)).catch(res => this.onLinksError(res));
-    } else {
-      this.isFacebookLoggedIn = false;
-    }
+  onLinksSuccess(data: any): void {
+    // this.ids.push(id) here
+    this.player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      playerVars: { 'autoplay': 1, playlist: data[0].id },
+      events: {
+        'onReady': this.onPlayerReady,
+        'onStateChange': (e: any) => {
+          console.log(e)
+        },
+        //  'onStateChange': this.onPlayerStateChange,
+        'onError': (event: any) => { console.log(event) }
+      }
+    });
   }
 
-  onLinksSuccess(res: any) : void {
-    console.log(res)
-    // this.player = new YT.Player('player', {
-    //   height: '390',
-    //   width: '640',
-    //   playerVars: { 'autoplay': 1, playlist: res },
-    //   events: {
-    //     'onReady': this.onPlayerReady,
-    //     'onStateChange': (e: any) => {
-    //       console.log(e)
-    //     },
-    //     //  'onStateChange': this.onPlayerStateChange,
-    //     'onError': (event: any) => { console.log(event) }
-    //   }
-    // });
-  }
-
-  onLinksError(res: any) : void {
-    console.log(res)
-  }
-
-  onLoginSuccess(res: any) : void {
-    console.log(res)
+  onLoginSuccess(res: any): void {
     this.isFacebookLoggedIn = true;
-    this.facebookService.getPostLinks('/1741337529467978/feed')
-    .then(res => this.onLinksSuccess(res)).catch(res => this.onLinksError(res));
-  }
-
-  onLoginError(res: any) : void {
-    console.log(res)
+    this.getPostLinks('/1741337529467978/feed') // use this.link query Params here
   }
 }
