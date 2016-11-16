@@ -1,8 +1,13 @@
-<p>
+<h1>
   Howdy!
-</p>
+</h1>
+
 
 <form (submit)="handleSubmit()">
-  <input [(ngModel)]="link" name="link" placeholder="Input public facebook group or event">
+  <input required
+    [(ngModel)]="link" name="link" placeholder="Input public facebook group or event link">
   <button type="submit">Play</button>
+  <div *ngIf="invalid" class="alert-danger">
+    This is not a valid facebook link
+  </div>
 </form>

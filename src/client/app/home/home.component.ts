@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router'
+import { FacebookService } from '../services/facebook.service'
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -9,20 +10,25 @@ import { Router, NavigationExtras } from '@angular/router'
   selector: 'sd-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
+  providers: [FacebookService]
 })
 
 export class HomeComponent {
 
   link: string = '';
+  invalid: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private facebookService: FacebookService) {}
 
   handleSubmit(): boolean {
-    let navigationExtras: NavigationExtras = {
-      queryParams: { 'link': this.link }
-    };
-    this.router.navigate(['/playlist'], navigationExtras)
+    if (this.facebookService.checkUrl(this.link) || true) {
+      let navigationExtras: NavigationExtras = {
+        queryParams: { 'link': this.link }
+      };
+      this.router.navigate(['/playlist'], navigationExtras)
+    } else {
+      this.invalid = true
+    }
     return false;
   }
-
 }
