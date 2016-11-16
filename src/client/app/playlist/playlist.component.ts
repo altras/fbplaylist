@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FacebookService } from '../services/facebook.service';
+import { YouTubeVideoData } from './model/YouTubeVideoData';
 
 declare var YT: any;
 
@@ -20,6 +21,8 @@ export class PlaylistComponent implements OnInit {
   isFacebookLoggedIn: boolean = true;
   player : any;
 
+  videos : YouTubeVideoData[] = [];
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private facebookService: FacebookService) {
@@ -30,6 +33,8 @@ export class PlaylistComponent implements OnInit {
     let queryParams: any = this.route.queryParams;
     this.link = queryParams.getValue().link
     this.facebookService.getLoginStatus().then(res => this.onLoginStatus(res))
+
+    this.videos[0] = new YouTubeVideoData("test title", "https://img.youtube.com/vi/8FU6Yytw4Yw/1.jpg")
   }
 
   onPlayerReady(event:any) : void {
@@ -64,19 +69,19 @@ export class PlaylistComponent implements OnInit {
 
   onLinksSuccess(res: any) : void {
     console.log(res)
-    this.player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      playerVars: { 'autoplay': 1, playlist: res },
-      events: {
-        'onReady': this.onPlayerReady,
-        'onStateChange': (e: any) => {
-          console.log(e)
-        },
-        //  'onStateChange': this.onPlayerStateChange,
-        'onError': (event: any) => { console.log(event) }
-      }
-    });
+    // this.player = new YT.Player('player', {
+    //   height: '390',
+    //   width: '640',
+    //   playerVars: { 'autoplay': 1, playlist: res },
+    //   events: {
+    //     'onReady': this.onPlayerReady,
+    //     'onStateChange': (e: any) => {
+    //       console.log(e)
+    //     },
+    //     //  'onStateChange': this.onPlayerStateChange,
+    //     'onError': (event: any) => { console.log(event) }
+    //   }
+    // });
   }
 
   onLinksError(res: any) : void {

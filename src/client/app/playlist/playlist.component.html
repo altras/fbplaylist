@@ -10,3 +10,10 @@
 </button>
 
 <div id="player"></div>
+
+<ul>
+  <li *ngFor="let item of videos; let i = index;">
+    <img  src="{{item.thumbnail}}"/>
+    <h3>{{item.title}}</h3>
+  </li>
+</ul>
