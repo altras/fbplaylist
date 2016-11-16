@@ -25,6 +25,7 @@ export class PlaylistComponent implements OnInit {
   ids: string[] = [];
 
   videos : YouTubeVideoData[] = [];
+  currentVideoPos : number = 0;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -48,7 +49,7 @@ export class PlaylistComponent implements OnInit {
   getPostLinks(url: string): void {
     this.facebookService.getPostLinks(url)
       .then(res => this.youtubeService.checkIds(res))
-      .then(ids => this.onLinksSuccess(ids))
+      .then((ids) => {this.onLinksSuccess(ids)})
       .catch(res => console.log(res));
   }
 
@@ -74,15 +75,20 @@ export class PlaylistComponent implements OnInit {
   }
 
   onLinksSuccess(data: any): void {
+    this.videos = data;
+    console.log(this.videos)
     // this.ids.push(id) here
     this.player = new YT.Player('player', {
       height: '390',
       width: '640',
-      playerVars: { 'autoplay': 1, playlist: data[0].id },
+      videoId: this.videos[this.currentVideoPos].id,
+      playerVars: { 'autoplay': 1 },
       events: {
         'onReady': this.onPlayerReady,
         'onStateChange': (e: any) => {
-          console.log(e)
+          if (e.data == 0) {
+            this.player.loadVideoById(this.videos[++this.currentVideoPos].id)
+          }
         },
         //  'onStateChange': this.onPlayerStateChange,
         'onError': (event: any) => { console.log(event) }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
+import { YouTubeVideoData } from '../playlist/model/YouTubeVideoData';
 
 
 @Injectable()
@@ -39,7 +40,9 @@ export class YoutubeService {
       xhr.onreadystatechange = () => {
         if (xhr.readyState == XMLHttpRequest.DONE) {
           var res = JSON.parse(xhr.responseText)
-          resolve(res)
+          resolve(res.items.map((item : any) => {
+            return new YouTubeVideoData(item.id, item.snippet.title, item.snippet.thumbnails.medium.url)
+          }))
         }
       }
       xhr.open('GET', url, true);
