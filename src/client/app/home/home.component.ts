@@ -21,7 +21,7 @@ export class HomeComponent {
   constructor(private router: Router, private facebookService: FacebookService) {}
 
   handleSubmit(): boolean {
-    if (this.facebookService.checkUrl(this.link) || true) {
+    if (this.facebookService.checkUrl(this.link)) {
       let navigationExtras: NavigationExtras = {
         queryParams: { 'link': this.link }
       };

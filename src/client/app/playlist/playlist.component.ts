@@ -39,7 +39,8 @@ export class PlaylistComponent implements OnInit {
     this.link = queryParams.getValue().link
     this.facebookService.getLoginStatus().then((res: any) => {
       if(res.status === 'connected') {
-        this.getPostLinks('/1741337529467978/feed') // use this.link query Params here
+        let graphNode = this.facebookService.match(this.link)
+        this.getPostLinks(`/${graphNode[2]}/feed`)
       } else {
         this.isFacebookLoggedIn = false;
       }
@@ -48,9 +49,21 @@ export class PlaylistComponent implements OnInit {
 
   getPostLinks(url: string): void {
     this.facebookService.getPostLinks(url)
-      .then(res => this.youtubeService.checkIds(res))
-      .then((ids) => {this.onLinksSuccess(ids)})
-      .catch(res => console.log(res));
+      .then((res: any) => this.youtubeService.checkIds(res))
+      .then((ids: any) => { this.onLinksSuccess(ids) })
+      .catch((res: any) => console.log(res));
+  }
+
+  onScroll(): void {
+    this.facebookService.getNextPage()
+      .then((res: any) => this.youtubeService.checkIds(res))
+      .then((ids: YouTubeVideoData[]) => { this.videos = this.videos.concat(ids) })
+      .catch((res: any) => console.log(res));
+  }
+
+  handleClick(item: any): void {
+    console.log(item)
+    this.player.loadVideoById(item.id)
   }
 
   onPlayerReady(event:any): void {
@@ -74,9 +87,8 @@ export class PlaylistComponent implements OnInit {
       .catch(res => console.log(res));
   }
 
-  onLinksSuccess(data: any): void {
-    this.videos = data;
-    console.log(this.videos)
+  onLinksSuccess(data: YouTubeVideoData[]): void {
+    this.videos = this.videos.concat(data);
     // this.ids.push(id) here
     this.player = new YT.Player('player', {
       height: '390',

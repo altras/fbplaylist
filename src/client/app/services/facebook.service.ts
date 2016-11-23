@@ -7,21 +7,17 @@ declare var FB: any;
 export class FacebookService {
 
   // Matches patterns such as:
-  // https://www.facebook.com/my_page_id => my_page_id
-  // http://www.facebook.com/my_page_id => my_page_id
-  // http://www.facebook.com/#!/my_page_id => my_page_id
-  // http://www.facebook.com/pages/Paris-France/Vanity-Url/123456?v=app_555 => 123456
-  // http://www.facebook.com/pages/Vanity-Url/45678 => 45678
-  // http://www.facebook.com/#!/page_with_1_number => page_with_1_number
-  // http://www.facebook.com/bounce_page#!/pages/Vanity-Url/45678 => 45678
-  // http://www.facebook.com/bounce_page#!/my_page_id?v=app_166292090072334 => my_page_id
-  // http://www.facebook.com/my.page.is.great => my.page.is.great
-  // https://www.facebook.com/events/779956635440394/
-  // https://www.facebook.com/groups/57346749824/
-  fbUrlRegex: any = /(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/
+  // https://www.facebook.com/events/57346749824/
+  // https://www.facebook.com/events/119453645198055/?active_tab=discussion
+  // https://www.facebook.com/groups/1741337529467978/?ref=br_tf
+  fbUrlRegex: any = /https?:\/\/www.facebook.com\/(groups|events)\/([0-9]+)/
 
   checkUrl(url: string) : boolean {
     return this.fbUrlRegex.test(url)
+  }
+
+  match(url: string): Array<any> {
+    return url.match(this.fbUrlRegex)
   }
 
   init() : void {
@@ -44,29 +40,34 @@ export class FacebookService {
 
   getPostLinks(path: string): Promise<any> {
     return new Promise<any>((resolve: any, reject: any) => {
-      this.getPostLinksRecursevly(path, resolve, reject);
+      this.getPosts(path, resolve, reject);
     })
   }
 
-
-  getPostLinksRecursevly(path: string, resolve: any, reject: any) : void {
+  getPosts(path: string, resolve: any, reject: any) : void {
     FB.api(path, 'GET', {"fields":"link"},
       (res: any) => {
         if(res.error) {
           reject(res)
         } else {
           resolve(res)
-          // this.pushIds(res.data).then(() => {
-            // if(res.paging && res.paging.next) {
-            //   this.getPostLinksRecursevly(res.paging.next, resolve, reject)
-            // } else {
-            //   console.log('this.ids[i]', this.ids.join(',').split(',').length)
-            //   resolve(this.ids[0]);
-            // }
-          // })
+          if(res.paging && res.paging.next) {
+            this.pagingNextUrl = res.paging.next
+          }
         }
       }
     );
+  }
+
+  pagingNextUrl: string;
+  getNextPage(): Promise<any> {
+    return new Promise<any>((resolve: any, reject: any) => {
+      if(this.pagingNextUrl) {
+        this.getPosts(this.pagingNextUrl, resolve, reject);
+      } else {
+        reject('No more pages')
+      }
+    })
   }
 
 

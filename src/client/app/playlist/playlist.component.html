@@ -9,11 +9,29 @@
     <i class=""></i>Sign in with Facebook
 </button>
 
-<div id="player"></div>
-
-<ul>
-  <li *ngFor="let item of videos; let i = index;">
-    <img  src="{{item.thumbnail}}"/>
-    <h3>{{item.title}}</h3>
-  </li>
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="embed-responsive embed-responsive-16by9">
+        <div id="player" class="embed-responsive-item"></div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="playlist-items"
+          infinite-scroll
+          [infiniteScrollDistance]="1"
+          [infiniteScrollThrottle]="10"
+          [scrollWindow]="false"
+          (scrolled)="onScroll()">
+        <ul class="list-group">
+          <li class="list-item" *ngFor="let item of videos; let i = index;" (click)="handleClick(item)">
+            <div class="center-block">
+              <img class="img-responsive center-block img-thumbnail" src="{{item.thumbnail}}"/>
+            </div>
+            <h3 class="text-center">{{item.title}}</h3>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
