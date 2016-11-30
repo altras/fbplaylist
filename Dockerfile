@@ -1,2 +1,3 @@
 FROM nginx
 COPY dist/prod /usr/share/nginx/html
+EXPOSE 80
