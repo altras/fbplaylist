@@ -21,6 +21,10 @@ h2 {
   padding: 0.5em;
 }
 
+.active {
+  background-color: #eee;
+}
+
 .list-item:hover {
   background-color: #eee;
   cursor: pointer;

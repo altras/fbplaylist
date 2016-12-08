@@ -44,6 +44,7 @@ input {
   height: 40px;
   outline: none;
   padding: 8px;
+  color: black !important;
 }
 
 button {
@@ -60,15 +61,4 @@ button {
 
 button:hover {
   background-color: #28739e;
-}
-
-.alert-danger {
-  margin-top: 1em;
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
 }

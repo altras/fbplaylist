@@ -6,9 +6,60 @@
 }
 
 .home-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 250px;
+  width: 50%;
   color: white;
+}
+
+.heading {
+  color: white;
+  font-size: 4em;
+}
+
+.help-text {
+  font-size: 1.2em;
+}
+
+.playlist-input {
+  height: 60px;
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.alert-danger {
+  margin-top: 1em;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-big {
+  padding: 16px 20px;
+  font-size: 18px;
+  line-height: 0.3333333;
+}
+
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background-color: #106cc8;
 }

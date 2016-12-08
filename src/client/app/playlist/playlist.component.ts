@@ -24,8 +24,8 @@ export class PlaylistComponent implements OnInit {
   done: boolean = false;
   ids: string[] = [];
 
-  videos : YouTubeVideoData[] = [];
-  currentVideoPos : number = 0;
+  videos: YouTubeVideoData[] = [];
+  currentVideoPos: number = 0;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -83,8 +83,8 @@ export class PlaylistComponent implements OnInit {
 
   onLoginClick(): void {
     this.facebookService.login()
-      .then(res => this.onLoginSuccess(res))
-      .catch(res => console.log(res));
+      .then((res: any) => this.onLoginSuccess(res))
+      .catch((res: any) => console.log(res));
   }
 
   onLinksSuccess(data: YouTubeVideoData[]): void {
