@@ -1,16 +1,19 @@
 <div class="home-container">
   <div class="home-content">
-    <h1>
-      Howdy!
-    </h1>
-
+    <h1 class="heading center">Playlist your feed!</h1>
     <form (submit)="handleSubmit()">
-      <input required
-      [(ngModel)]="link" name="link" placeholder="Input public facebook group or event link">
-      <button type="submit">Play</button>
+      <input class="playlist-input" required [(ngModel)]="link" name="link"
+        placeholder="Input public facebook group or event link">
+      <p class="center">
+        <button type="submit call-to-action-btn">Playlist it</button>
+      </p>
       <div *ngIf="invalid" class="alert-danger">
         This is not a valid facebook link
       </div>
+      <p class="center help-text">
+        Or you can try one of the public playlists
+        <a class="label" href='playlist?link=https%3A%2F%2Fwww.facebook.com%2Fevents%2F223184108093463%2F'>here</a>
+      </p>
     </form>
   </div>
 </div>
