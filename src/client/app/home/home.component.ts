@@ -26,9 +26,18 @@ export class HomeComponent {
         queryParams: { 'link': this.link }
       };
       this.router.navigate(['/playlist'], navigationExtras)
+      return true
     } else {
       this.invalid = true
     }
     return false;
+  }
+
+  navigateToPublic(): boolean {
+    let navigationExtras: NavigationExtras = {
+      queryParams: { 'link': 'https://www.facebook.com/groups/1741337529467978/' }
+    };
+    this.router.navigate(['/playlist'], navigationExtras)
+    return true;
   }
 }
