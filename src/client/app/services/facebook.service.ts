@@ -10,7 +10,7 @@ export class FacebookService {
   // https://www.facebook.com/events/57346749824/
   // https://www.facebook.com/events/119453645198055/?active_tab=discussion
   // https://www.facebook.com/groups/1741337529467978/?ref=br_tf
-  fbUrlRegex: any = /https?:\/\/www.facebook.com\/(groups|events)\/([\0-9]+)/
+  fbUrlRegex: any = /https?:\/\/www.facebook.com\/(groups|events)\/([0-9]+)/
 
   checkUrl(url: string) : boolean {
     return this.fbUrlRegex.test(url)
