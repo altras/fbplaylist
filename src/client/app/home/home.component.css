@@ -6,10 +6,6 @@
 }
 
 .home-content {
-  /*display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-  align-items: center;*/
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -48,11 +44,10 @@
   border-radius: 4px;
 }
 
-.call-to-action-btn {
-  padding: 10px 16px;
+.btn-big {
+  padding: 16px 20px;
   font-size: 18px;
-  line-height: 1.3333333;
-  border-radius: 6px;
+  line-height: 0.3333333;
 }
 
 .label {
