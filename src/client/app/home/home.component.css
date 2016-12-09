@@ -46,27 +46,6 @@
   border-radius: 4px;
 }
 
-.btn-big {
-  padding: 16px 20px;
-  font-size: 18px;
-  line-height: 0.3333333;
-  // beacuse of missing bootstrap
-  background-color: #106cc8;
-  border-style: none;
-  color: rgba(255, 255, 255, 0.87);
-  cursor: pointer;
-  display: inline-block;
-  height: 40px;
-  padding: 8px 18px;
-  text-decoration: none;
-  background-color: #106cc8;
-}
-
-.btn-big:hover {
-  // beacuse of missing bootstrap
-  background-color: #28739e;
-}
-
 .label {
   display: inline;
   padding: .2em .6em .3em;
