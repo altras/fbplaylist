@@ -12,7 +12,7 @@ export class ProjectConfig extends SeedConfig {
 
   constructor() {
     super();
-    this.APP_TITLE = 'Playlist app';
+    this.APP_TITLE = 'Playlist your feed!';
 
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     // this.TYPED_COMPILE_INTERVAL = 5;
