@@ -26,6 +26,8 @@
 .playlist-input {
   height: 60px;
   width: 100%;
+  padding: 8px;
+  color: black !important;
 }
 
 .center {
@@ -57,6 +59,7 @@
   height: 40px;
   padding: 8px 18px;
   text-decoration: none;
+  background-color: #106cc8;
 }
 
 .btn-big:hover {
