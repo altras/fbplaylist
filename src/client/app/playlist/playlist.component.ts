@@ -99,8 +99,7 @@ export class PlaylistComponent implements OnInit {
         'onReady': this.onPlayerReady,
         'onStateChange': (e: any) => {
           if (e.data == 0) {
-            this.player.loadVideoById(this.videos[++this.currentVideoPos].id)
-            this.scrollToItem();
+            this.loadNext()
           }
         },
         //  'onStateChange': this.onPlayerStateChange,
@@ -115,7 +114,21 @@ export class PlaylistComponent implements OnInit {
   }
 
   scrollToItem(): void {
-    var height : number = document.getElementsByClassName('list-item')[0].offsetHeight;
-    document.getElementsByClassName('playlist-items')[0].scrollTop = this.currentVideoPos*height
+    var element: any = document.getElementsByClassName('list-item')[this.currentVideoPos]
+    element.scrollIntoView(true)
+  }
+
+  loadPrevious(): void {
+    if (this.currentVideoPos > 0) {
+      this.player.loadVideoById(this.videos[--this.currentVideoPos].id);
+      this.scrollToItem();
+    }
+  }
+
+  loadNext(): void {
+    if (this.currentVideoPos < this.videos.length - 1) {
+      this.player.loadVideoById(this.videos[++this.currentVideoPos].id);
+      this.scrollToItem();
+    }
   }
 }
