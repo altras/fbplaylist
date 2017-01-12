@@ -100,6 +100,7 @@ export class PlaylistComponent implements OnInit {
         'onStateChange': (e: any) => {
           if (e.data == 0) {
             this.player.loadVideoById(this.videos[++this.currentVideoPos].id)
+            this.scrollToItem();
           }
         },
         //  'onStateChange': this.onPlayerStateChange,
@@ -111,5 +112,10 @@ export class PlaylistComponent implements OnInit {
   onLoginSuccess(res: any): void {
     this.isFacebookLoggedIn = true;
     this.getPostLinks('/1741337529467978/feed') // use this.link query Params here
+  }
+
+  scrollToItem(): void {
+    var height : number = document.getElementsByClassName('list-item')[0].offsetHeight;
+    document.getElementsByClassName('playlist-items')[0].scrollTop = this.currentVideoPos*height
   }
 }
