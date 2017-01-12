@@ -61,9 +61,9 @@ export class PlaylistComponent implements OnInit {
       .catch((res: any) => console.log(res));
   }
 
-  handleClick(item: any): void {
-    console.log(item)
+  handleClick(item: any, position: number): void {
     this.player.loadVideoById(item.id)
+    this.currentVideoPos = position;
   }
 
   onPlayerReady(event:any): void {
