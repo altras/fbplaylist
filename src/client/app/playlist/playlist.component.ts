@@ -19,6 +19,7 @@ declare var YT: any;
 export class PlaylistComponent implements OnInit {
 
   link: string;
+  name: string;
   isFacebookLoggedIn: boolean = true;
   player: any;
   done: boolean = false;
@@ -41,6 +42,8 @@ export class PlaylistComponent implements OnInit {
       if(res.status === 'connected') {
         let graphNode = this.facebookService.match(this.link)
         this.getPostLinks(`/${graphNode[2]}/feed`)
+        this.facebookService.getName(`/${graphNode[2]}`)
+         .then((res: any) => { this.name = res.name })
       } else {
         this.isFacebookLoggedIn = false;
       }

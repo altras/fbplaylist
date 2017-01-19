@@ -44,6 +44,20 @@ export class FacebookService {
     })
   }
 
+  getName(path: string) : void {
+    return new Promise<any>((resolve: any, reject: any) => {
+      FB.api(path, 'GET', {},
+        (res: any) => {
+          if(res.error) {
+            reject(res)
+          } else {
+            resolve(res)
+          }
+        }
+      );
+    })
+  }
+
   getPosts(path: string, resolve: any, reject: any) : void {
     FB.api(path, 'GET', {"fields":"link"},
       (res: any) => {
