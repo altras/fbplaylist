@@ -61,6 +61,7 @@ export class FacebookService {
   getPosts(path: string, resolve: any, reject: any) : void {
     FB.api(path, 'GET', {"fields":"link"},
       (res: any) => {
+        console.log('res', res)
         if(res.error) {
           reject(res)
         } else {
