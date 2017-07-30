@@ -2,6 +2,9 @@
 
 This repo and the project sadly is no longer supported ;(
 
+![screenshot from 2017-07-30 19-56-15](https://user-images.githubusercontent.com/761656/28755634-edcbe9aa-7567-11e7-9c18-06f306a90a01.png)
+![screenshot from 2017-07-30 19-56-59](https://user-images.githubusercontent.com/761656/28755635-edcc0f2a-7567-11e7-9d9e-8c5e80e833d3.png)
+
 ```bash
 git clone git@bitbucket.org:altras/playlist-app.git
 cd playlist-app
