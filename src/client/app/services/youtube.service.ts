@@ -13,7 +13,7 @@ export class YoutubeService {
   // http://www.youtube.com/watch?v=t-ZRX8984sc
   // http://youtu.be/t-ZRX8984sc
   urlRegex: any = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?/;
-  youtubeDataAPIKey: string = 'AIzaSyC2yg9n6dHWB877LCxFga5bHEQAvpU4fd4'
+  youtubeDataAPIKey: string = '' // put your youtube API key here
 
   matchUrl (url: string): any {
     return url.match(this.urlRegex)

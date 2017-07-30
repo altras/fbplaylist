@@ -22,7 +22,7 @@ export class FacebookService {
 
   init() : void {
     FB.init({
-      appId: '1673818472934251',
+      appId: '', // put your facebook appId here
       xfbml: true,
       cookie: true,
       version: 'v2.7'

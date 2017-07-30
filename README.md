@@ -1,3 +1,7 @@
+# Not supported
+
+## FBPlaylist -> easily create a playlist of youtube videos from facebook event/group/page
+
 ```bash
 git clone git@bitbucket.org:altras/playlist-app.git
 cd playlist-app
@@ -22,6 +26,9 @@ npm run build.prod.exp
 npm start -- --app baz
 npm start -- --app foo
 npm start -- --app bar
+
+# use docker to create production ready container
+bash ./scripts/create-docker-image.sh
 ```
 
 _Does not rely on any global dependencies._
