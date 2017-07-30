@@ -1,6 +1,6 @@
-# Not supported
-
 ## FBPlaylist -> easily create a playlist of youtube videos from facebook event/group/page
+
+This repo and the project sadly is no longer supported ;(
 
 ```bash
 git clone git@bitbucket.org:altras/playlist-app.git
